@@ -1,9 +1,11 @@
 using System;
+using System.Globalization;
 using Api.Common.Extensions;
 using Api.Common.Settings;
 using Api.IoC;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -58,6 +60,10 @@ namespace Api {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
+
+            ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo(
+                name: "ru"
+            );
 
             app.UseRouting();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
