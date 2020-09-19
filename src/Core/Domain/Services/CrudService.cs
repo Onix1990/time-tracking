@@ -37,7 +37,7 @@ namespace Core.Domain.Services {
 
         public async Task<TOutDto> GetByIdAsync(TId id) {
             var entity = await Repository.GetByIdAsync(id)
-                                         .ConfigureAwait(false);
+                .ConfigureAwait(false);
 
             if (entity is null) {
                 throw new ObjectNotFoundException();
@@ -53,7 +53,7 @@ namespace Core.Domain.Services {
 
         public virtual async Task<TOutDto> CreateAsync(TCreateDto inDto) {
             await CreateValidator.ValidateAndThrowAsync(inDto)
-                                 .ConfigureAwait(false);
+                .ConfigureAwait(false);
             var entity = Mapper.Map<TEntity>(inDto);
             await Repository.SaveAsync(entity).ConfigureAwait(false);
             return Mapper.Map<TOutDto>(entity);
@@ -62,7 +62,7 @@ namespace Core.Domain.Services {
         public virtual async Task<TOutDto>
             UpdateAsync(TId id, TUpdateDto inDto) {
             var entity = await Repository.GetByIdAsync(id)
-                                         .ConfigureAwait(false);
+                .ConfigureAwait(false);
 
             if (entity is null) {
                 throw new ObjectNotFoundException();
@@ -70,7 +70,7 @@ namespace Core.Domain.Services {
 
             UpdateValidator.EntityToUpdate = entity;
             await UpdateValidator.ValidateAndThrowAsync(inDto)
-                                 .ConfigureAwait(false);
+                .ConfigureAwait(false);
 
             Mapper.Map(inDto, entity);
 
@@ -81,7 +81,7 @@ namespace Core.Domain.Services {
 
         public virtual async Task DeleteAsync(TId id) {
             var entity = await Repository.GetByIdAsync(id)
-                                         .ConfigureAwait(false);
+                .ConfigureAwait(false);
 
             if (entity is null) {
                 throw new ObjectNotFoundException();

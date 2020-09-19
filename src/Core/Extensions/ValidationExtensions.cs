@@ -15,30 +15,30 @@ namespace Core.Extensions {
             this IEnumerable<ValidationFailure> validationFailures
         ) {
             return validationFailures
-                   .GroupBy(x => x.PropertyName)
-                   .ToDictionary(x => x.Key,
-                                 group =>
-                                     group.Select(x => x.ErrorMessage)
-                                          .ToArray()
-                   );
+                .GroupBy(x => x.PropertyName)
+                .ToDictionary(x => x.Key,
+                    group =>
+                        group.Select(x => x.ErrorMessage)
+                            .ToArray()
+                );
         }
 
         public static IRuleBuilderOptions<TDto, string> NotOnlySpaces<TDto>(
             this IRuleBuilder<TDto, string> ruleBuilder
         ) {
             return ruleBuilder
-                   .Must(
-                       x => {
-                           if (string.IsNullOrEmpty(x)) {
-                               return true;
-                           }
+                .Must(
+                    x => {
+                        if (string.IsNullOrEmpty(x)) {
+                            return true;
+                        }
 
-                           return !x.All(char.IsWhiteSpace);
-                       }
-                   )
-                   .WithMessage(
-                       "Поле не должно содержать только символы пробелов"
-                   );
+                        return !x.All(char.IsWhiteSpace);
+                    }
+                )
+                .WithMessage(
+                    "Поле не должно содержать только символы пробелов"
+                );
         }
 
         public static IRuleBuilderInitial<TDto, TInputId> ExistsAsync<
@@ -61,7 +61,7 @@ namespace Core.Extensions {
 
                 var typedId = (TId) Convert.ChangeType(id, typeof(TId));
                 var entity = await dbRepository.GetByIdAsync(typedId)
-                                               .ConfigureAwait(false);
+                    .ConfigureAwait(false);
 
                 if (entity == null) {
                     context.AddFailure("Объект не найден");

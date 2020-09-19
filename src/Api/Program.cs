@@ -10,7 +10,7 @@ namespace Api {
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                   .ConfigureServices(services => services.AddAutofac())
-                   .UseStartup<Startup>();
+                .ConfigureServices(services => services.AddAutofac())
+                .UseStartup<Startup>();
     }
 }
