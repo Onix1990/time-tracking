@@ -115,7 +115,8 @@ namespace Api.Data.Repositories.Database.Dapper {
 
         private const string UPDATE_SQL_QUERY =
             @"UPDATE Audits 
-            SET description = @Description, hours = @Hours, date = @Date";
+            SET description = @Description, hours = @Hours, date = @Date
+            WHERE Id = @Id";
 
         private const string DELETE_SQL_QUERY =
             @"DELETE

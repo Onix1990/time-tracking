@@ -68,7 +68,8 @@ namespace Api.Data.Repositories.Database.Dapper {
         private const string UPDATE_SQL_QUERY =
             @"UPDATE users 
             SET email = @Email, first_name = @FirstName, 
-            last_name = @LastName, patronymic = @Patronymic";
+            last_name = @LastName, patronymic = @Patronymic
+            WHERE Id = @Id";
 
         private const string DELETE_SQL_QUERY =
             @"DELETE 
