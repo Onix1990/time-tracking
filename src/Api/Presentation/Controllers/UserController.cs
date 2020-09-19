@@ -24,7 +24,8 @@ namespace Api.Presentation.Controllers {
 
         [UowType(IsolationLevel.Serializable)]
         public override Task<ActionResult<UserOutDto>> UpdateAsync(
-            long id, UpdateUserDto inDto
+            long id,
+            UpdateUserDto inDto
         ) {
             return base.UpdateAsync(id, inDto);
         }
