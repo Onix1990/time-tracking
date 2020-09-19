@@ -9,10 +9,10 @@ using FluentValidation.Validators;
 
 namespace Api.Domain.Validators {
     public sealed class CreateUserValidator : CreateValidator<CreateUserDto> {
-        private readonly IUserRepository UserDbRepository;
+        private readonly IUserRepository userDbRepository;
 
         public CreateUserValidator(IUserRepository userDbRepository) {
-            UserDbRepository = userDbRepository;
+            this.userDbRepository = userDbRepository;
             ApplyRules();
         }
 
@@ -44,7 +44,7 @@ namespace Api.Domain.Validators {
             CancellationToken cancellationToken
         ) {
             context.MessageFormatter.AppendArgument("Email", email);
-            return await UserDbRepository.GetByEmailAsync(email) is null;
+            return await userDbRepository.GetByEmailAsync(email) is null;
         }
     }
 }
