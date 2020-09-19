@@ -14,7 +14,7 @@ namespace Api.Data.Repositories.Database.Dapper {
 
         public async Task<Audit> GetByIdAsync(long id) {
             var result = await Connection.QueryAsync<Audit, User, Audit>(
-                sql: GET_SQL_QUERY,
+                sql: GET_BY_ID_SQL_QUERY,
                 param: new {
                     Id = id
                 },
@@ -26,7 +26,6 @@ namespace Api.Data.Repositories.Database.Dapper {
             );
             return result.SingleOrDefault();
         }
-
 
         public Task<IEnumerable<Audit>> GetAllAsync() =>
             Connection.QueryAsync<Audit, User, Audit>(
@@ -45,11 +44,11 @@ namespace Api.Data.Repositories.Database.Dapper {
         ) {
             var sql = GET_ALL_SQL_QUERY + (year, month) switch {
                 (null, null) => "",
-                ({}, null) => " AND @Year = extract(year from date)",
-                (null, {}) => " AND @Month = extract(month from date)",
+                ({}, null) => " AND @Year = EXTRACT(year FROM date)",
+                (null, {}) => " AND @Month = EXTRACT(month FROM date)",
                 ({}, {}) =>
-                    @" AND @Year * 100 + @Month = extract(year from date) 
-                            * 100 + extract(month from date)"
+                    @" AND @Year * 100 + @Month 
+                    = EXTRACT(year FROM date) * 100 + EXTRACT(month FROM date)"
             };
 
             sql += userId switch {
@@ -71,7 +70,6 @@ namespace Api.Data.Repositories.Database.Dapper {
                 splitOn: "id"
             );
         }
-
 
         public async Task SaveAsync(Audit entity) {
             var id = await Connection.QuerySingleAsync<long>(
@@ -99,21 +97,29 @@ namespace Api.Data.Repositories.Database.Dapper {
             );
 
         private const string GET_ALL_SQL_QUERY =
-            "select * from audits JOIN users ON audits.user_id = users.id";
+            @"SELECT * 
+            FROM audits 
+            JOIN users ON audits.user_id = users.id";
 
-        private const string GET_SQL_QUERY =
-            @"select * from Audits 
-            JOIN users ON audits.user_id = users.id where audits.id=@Id";
+        private const string GET_BY_ID_SQL_QUERY =
+            @"SELECT * 
+            FROM audits 
+            JOIN users ON audits.user_id = users.id 
+            WHERE audits.id = @Id";
 
         private const string INSERT_SQL_QUERY =
-            @"insert into Audits (description, hours, date, user_id) 
-            values (@Description, @Hours, @Date, @UserId) RETURNING id";
+            @"INSERT 
+            INTO Audits (description, hours, date, user_id) 
+            VALUES (@Description, @Hours, @Date, @UserId) 
+            RETURNING id";
 
         private const string UPDATE_SQL_QUERY =
-            @"update Audits 
-            set description=@Description, hours=@Hours, date=@Date";
+            @"UPDATE Audits 
+            SET description = @Description, hours = @Hours, date = @Date";
 
         private const string DELETE_SQL_QUERY =
-            "DELETE from Audits WHERE Id = @Id";
+            @"DELETE
+            FROM Audits 
+            WHERE Id = @Id";
     }
 }
