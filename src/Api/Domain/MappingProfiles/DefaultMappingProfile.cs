@@ -15,7 +15,13 @@ namespace Api.Domain.MappingProfiles {
                         x => x.Date != null ? x.Date.Value.Date : default
                     )
                 );
-            CreateMap<UpdateAuditDto, Audit>();
+            CreateMap<UpdateAuditDto, Audit>()
+                .ForMember(
+                    x => x.Date,
+                    opt => opt.MapFrom(
+                        x => x.Date != null ? x.Date.Value.Date : default
+                    )
+                );
             CreateMap<Audit, AuditOutDto>();
         }
     }
