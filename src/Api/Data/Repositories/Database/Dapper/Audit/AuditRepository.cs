@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -95,6 +96,23 @@ namespace Api.Data.Repositories.Database.Dapper {
                 sql: DELETE_SQL_QUERY,
                 param: new {Id = entity.Id}
             );
+
+        public async Task<int> GetHoursSumByUserIdDateAsync(
+            long userId,
+            DateTime date
+        ) =>
+            await Connection.ExecuteScalarAsync<int>(
+                sql: GET_SUM_HOURS_BY_USER_ID_DATE_SQL_QUERY,
+                param: new {
+                    UserId = userId,
+                    Date = date
+                }
+            );
+
+        private const string GET_SUM_HOURS_BY_USER_ID_DATE_SQL_QUERY =
+            @"SELECT SUM(hours)
+            FROM audits
+            WHERE user_id = @UserId AND date = @Date";
 
         private const string GET_ALL_SQL_QUERY =
             @"SELECT * 

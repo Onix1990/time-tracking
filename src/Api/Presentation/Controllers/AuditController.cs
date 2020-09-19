@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using Api.Common.ActionFilters;
 using Api.Domain.Dto;
@@ -35,6 +36,21 @@ namespace Api.Presentation.Controllers {
         [NonAction]
         public override Task<ActionResult<IList<AuditOutDto>>> GetAllAsync() {
             throw new NotSupportedException();
+        }
+
+        [UowType(IsolationLevel.Serializable)]
+        public override Task<ActionResult<AuditOutDto>> CreateAsync(
+            CreateAuditDto inDto
+        ) {
+            return base.CreateAsync(inDto);
+        }
+
+        [UowType(IsolationLevel.Serializable)]
+        public override Task<ActionResult<AuditOutDto>> UpdateAsync(
+            long id,
+            UpdateAuditDto inDto
+        ) {
+            return base.UpdateAsync(id, inDto);
         }
     }
 }

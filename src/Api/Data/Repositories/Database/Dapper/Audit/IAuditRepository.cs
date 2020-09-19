@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Domain.Entities;
 using Core.Domain.Repositories;
@@ -9,6 +10,11 @@ namespace Api.Data.Repositories.Database.Dapper {
             int? year,
             int? month,
             long? userId
+        );
+
+        Task<int> GetHoursSumByUserIdDateAsync(
+            long userId,
+            DateTime date
         );
     }
 }
