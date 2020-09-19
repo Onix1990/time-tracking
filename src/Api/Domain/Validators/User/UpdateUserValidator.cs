@@ -34,7 +34,6 @@ namespace Api.Domain.Validators {
             RuleFor(x => x.Email)
                 .MustAsync(BeUniqueEmail)
                 .WithMessage("Пользователь с email '{Email}' уже существует")
-                .When(x => x.Email != null)
                 .NotNull()
                 .EmailAddress();
         }
@@ -45,6 +44,8 @@ namespace Api.Domain.Validators {
             PropertyValidatorContext context,
             CancellationToken cancellationToken
         ) {
+            if (email is null) return true;
+
             context.MessageFormatter.AppendArgument("Email", email);
             var user = await userDbRepository.GetByEmailAsync(email);
             return user is null || user == EntityToUpdate;
