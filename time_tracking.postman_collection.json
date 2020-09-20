@@ -1,0 +1,360 @@
+{
+	"info": {
+		"_postman_id": "279d97d2-7af7-44d1-b7e4-3955357402fc",
+		"name": "time_tracking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add_user_ivan",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"ivan@time.ru\",\r\n  \"firstName\": \"Иван\",\r\n  \"lastName\": \"Иванов\",\r\n  \"patronymic\": \"Иванович\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{IP}}:{{PORT}}/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_user_maksim",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"ivan@time.ru\",\r\n  \"firstName\": \"Иван\",\r\n  \"lastName\": \"Иванов\",\r\n  \"patronymic\": \"Иванович\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{IP}}:{{PORT}}/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_audit_ivan_5h_2020_08",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"description\": \"Подготовка изделия к обработке\",\r\n  \"hours\": 5,\r\n  \"date\": \"2020-08-20\",\r\n  \"userId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{IP}}:{{PORT}}/api/v1/audits",
+					"protocol": "http",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"audits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_audit_ivan_11h_2020_09",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"description\": \"Обработка изделия\",\r\n  \"hours\": 11,\r\n  \"date\": \"2020-09-20\",\r\n  \"userId\": 8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{IP}}:{{PORT}}/api/v1/audits",
+					"protocol": "http",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"audits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_audit_maksim_8h_2020_09",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"description\": \"Сортировка продукции\",\r\n  \"hours\": 8,\r\n  \"date\": \"2020-09-20\",\r\n  \"userId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{IP}}:{{PORT}}/api/v1/audits",
+					"protocol": "http",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"audits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_audit_maksim_8h_2020_09",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"description\": \"Сортировка продукции\",\r\n  \"hours\": 8,\r\n  \"date\": \"2020-09-19\",\r\n  \"userId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{IP}}:{{PORT}}/api/v1/audits",
+					"protocol": "http",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"audits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit_audit_ivan_11h_to_10h",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"description\": \"Корректировка времени\",\r\n  \"hours\": 10,\r\n  \"date\": \"2020-09-20\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{IP}}:{{PORT}}/api/v1/audits/2",
+					"protocol": "http",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"audits",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_audits_ivan_2020_09",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{IP}}:{{PORT}}/api/v1/audits?userId=1&year=2020&month=9",
+					"protocol": "http",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"audits"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "year",
+							"value": "2020"
+						},
+						{
+							"key": "month",
+							"value": "9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_audits_ivan_2020_08",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{IP}}:{{PORT}}/api/v1/audits?user_id=1&year=2020&month=9",
+					"protocol": "http",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"audits"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "1"
+						},
+						{
+							"key": "year",
+							"value": "2020"
+						},
+						{
+							"key": "month",
+							"value": "9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_audits_maksim_2020_09",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{IP}}:{{PORT}}/api/v1/audits?userId=2&year=2020&month=9",
+					"protocol": "http",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"audits"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "2"
+						},
+						{
+							"key": "year",
+							"value": "2020"
+						},
+						{
+							"key": "month",
+							"value": "9"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6db861d2-cd5c-47d8-b6e7-602564b53901",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ed89ee95-7b47-4fd1-b1a0-5129dcd8141d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "2cc9a436-537d-49e9-8f54-bfac03745f93",
+			"key": "IP",
+			"value": "localhost"
+		},
+		{
+			"id": "82e3b424-8714-4f35-aef5-f5f785cc4af5",
+			"key": "PORT",
+			"value": "4912"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
