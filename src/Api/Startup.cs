@@ -26,10 +26,13 @@ namespace Api {
 
         public IServiceProvider ConfigureServices(IServiceCollection services) {
             var databaseSettingsSection = Configuration.GetSection("Database");
+            var appSettingsSection = Configuration.GetSection("App");
             services.Configure<DatabaseSettings>(databaseSettingsSection);
+            services.Configure<AppSettings>(appSettingsSection);
 
             ValidateAndThrowConfigurationSections(
-                databaseSettingsSection
+                databaseSettingsSection,
+                appSettingsSection
             );
 
             services.AddSwaggerDocument(config => {
@@ -37,6 +40,21 @@ namespace Api {
                 config.Version = "v1";
                 config.DocumentName = "docs";
             });
+
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            services.AddCors(
+                options => options.AddPolicy(
+                    "AllowAll",
+                    policy => {
+                        policy
+                            .WithOrigins(appSettings.AllowedOrigins)
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials();
+                    }
+                )
+            );
+
             services.AddRouting(options => options.LowercaseUrls = true);
             services
                 .AddMvc(options => {
@@ -73,10 +91,12 @@ namespace Api {
         }
 
         private static void ValidateAndThrowConfigurationSections(
-            IConfigurationSection databaseSettingsSection
+            IConfigurationSection databaseSettingsSection,
+            IConfigurationSection appSettingsSection
         ) {
             databaseSettingsSection
                 .CheckExistPropertiesAndThrow<DatabaseSettings>();
+            appSettingsSection.CheckExistPropertiesAndThrow<AppSettings>();
         }
     }
 }
