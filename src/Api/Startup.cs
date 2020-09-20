@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Net.Mime;
 using Api.Common.Extensions;
 using Api.Common.Settings;
 using Api.IoC;
@@ -40,7 +41,7 @@ namespace Api {
             services
                 .AddMvc(options => {
                     options.Filters.Add(
-                        new ProducesAttribute("application/json"));
+                        new ProducesAttribute(MediaTypeNames.Application.Json));
                 })
                 .AddControllersAsServices()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
