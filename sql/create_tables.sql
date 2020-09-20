@@ -20,5 +20,5 @@ CREATE TABLE audits
     CONSTRAINT audits_fk0 FOREIGN KEY (user_id)
         REFERENCES users (id)
         ON UPDATE CASCADE
-        ON DELETE RESTRICT
+        ON DELETE CASCADE
 );
