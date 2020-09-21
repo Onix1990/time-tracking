@@ -25,7 +25,7 @@ namespace Api.Data.Repositories.Database.Dapper {
                 },
                 splitOn: "id"
             );
-            return result.SingleOrDefault();
+            return result.FirstOrDefault();
         }
 
         public Task<IEnumerable<Audit>> GetAllAsync() =>
