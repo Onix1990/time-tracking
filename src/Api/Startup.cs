@@ -74,8 +74,10 @@ namespace Api {
             return new AutofacServiceProvider(AutofacContainer);
         }
 
-        public void Configure(IApplicationBuilder app,
-                              IWebHostEnvironment env) {
+        public void Configure(
+            IApplicationBuilder app,
+            IWebHostEnvironment env
+        ) {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }

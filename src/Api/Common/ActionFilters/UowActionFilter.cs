@@ -28,7 +28,7 @@ namespace Api.Common.ActionFilters {
             }
             catch {
                 context.Result = new StatusCodeResult(
-                    StatusCodes.Status503ServiceUnavailable
+                    statusCode: StatusCodes.Status503ServiceUnavailable
                 );
                 return;
             }
@@ -45,7 +45,7 @@ namespace Api.Common.ActionFilters {
             }
             catch {
                 executedContext.Result = new StatusCodeResult(
-                    StatusCodes.Status503ServiceUnavailable
+                    statusCode: StatusCodes.Status503ServiceUnavailable
                 );
                 executedContext.ExceptionHandled = true;
             }

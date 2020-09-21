@@ -8,17 +8,18 @@ namespace Api.Domain.MappingProfiles {
             CreateMap<CreateUserDto, User>();
             CreateMap<UpdateUserDto, User>();
             CreateMap<User, UserOutDto>();
+
             CreateMap<CreateAuditDto, Audit>()
                 .ForMember(
-                    x => x.Date,
-                    opt => opt.MapFrom(
+                    destinationMember: x => x.Date,
+                    memberOptions: opt => opt.MapFrom(
                         x => x.Date != null ? x.Date.Value.Date : default
                     )
                 );
             CreateMap<UpdateAuditDto, Audit>()
                 .ForMember(
-                    x => x.Date,
-                    opt => opt.MapFrom(
+                    destinationMember: x => x.Date,
+                    memberOptions: opt => opt.MapFrom(
                         x => x.Date != null ? x.Date.Value.Date : default
                     )
                 );

@@ -12,11 +12,15 @@ namespace Api.Common.Extensions {
             var necessaryProperties = typeof(T)
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(x =>
-                    x.GetGetMethod() != null && x.GetSetMethod() != null)
+                    x.GetGetMethod() != null
+                    && x.GetSetMethod() != null
+                )
                 .Select(x => x.Name);
-            var existProperties =
-                configurationSection.GetChildren().Select(x => x.Key);
-            var missingProperties = necessaryProperties.Except(existProperties)
+            var existProperties = configurationSection
+                .GetChildren()
+                .Select(x => x.Key);
+            var missingProperties = necessaryProperties
+                .Except(existProperties)
                 .ToImmutableList();
             if (missingProperties.Any()) {
                 throw new Exception(

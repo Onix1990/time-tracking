@@ -23,8 +23,8 @@ namespace Api.Domain.Services {
             IAuditRepository repository,
             CreateAuditValidator createValidator,
             UpdateAuditValidator updateValidator,
-            IMapper mapper, IUserRepository userDbRepository) : base(
-            repository, mapper, createValidator, updateValidator) {
+            IMapper mapper, IUserRepository userDbRepository) :
+            base(repository, mapper, createValidator, updateValidator) {
             this.userDbRepository = userDbRepository;
         }
 

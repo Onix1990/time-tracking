@@ -3,8 +3,8 @@ using Core.Data;
 
 namespace Api.Data.Database {
     public class DapperUnitOfWork : UnitOfWork<IDbConnection, IDbTransaction> {
-        public DapperUnitOfWork(IDatabase<IDbConnection> database) : base(
-            database) { }
+        public DapperUnitOfWork(IDatabase<IDbConnection> database) :
+            base(database) { }
 
         protected override void CommitTransaction() {
             Transaction.Commit();

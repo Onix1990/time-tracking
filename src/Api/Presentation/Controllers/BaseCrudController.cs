@@ -18,7 +18,7 @@ namespace Api.Presentation.Controllers {
         TCreateDto, TUpdateDto, TOutDto
     > : ControllerBase
         where TService : ICrudService<
-            TEntity, TId,
+            TEntity, TId, 
             TCreateDto, TUpdateDto, TOutDto
         >
         where TEntity : Entity<TId> {
